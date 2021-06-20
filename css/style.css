@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Teko:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Teko:wght@300&display=swap');
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 1024px;
+  margin: auto;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 100px 1fr 100px;
+  gap: 20px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  background: silver;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-family: 'Lobster', 'cursive';
+  font-size: 20px;
+}
+
+header img {
+  width: 100px;
+}
+
+header nav a {
+  color: black;
+  text-decoration: none;
+  padding: 10px 20px;
+  transition: all 350ms;
+  position: relative;
+}
+
+header nav a:hover {
+  background: #70d2f8;
+  color: #222;
+}
+
+header nav a:hover::after {
+  background: #fff;
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: '';
+}
+
+main p {
+  margin-bottom: 10px;
+  font-family: 'Lobster', 'cursive';
+  font-size: 20px;
+  text-align: left;
+}
+
+.image-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.image-section img {
+  height: 250px;
+  object-fit: cover;
+  width: 100%;
+}
+
+section:nth-child(2) section {
+  background-color: silver;
+}
+
+#showResult {
+  margin-top: 20px;
+}
+
+button {
+  width: 150px;
+  height: 50px;
+  background-color: silver;
+  position: relative;
+  font-family: 'Lobster', 'cursive';
+  font-size: 20px;
+}
+
+button:hover {
+  background: rgb(128, 175, 238);
+}
+
+button:hover::after {
+  background: rgb(240, 222, 222);
+  height: 5px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: '';
+}
+
+ul {
+  line-height: 2;
+  font-size: 25px;
+  list-style: disc;
+  color: #222;
+  background: silver;
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  font-family: 'Fjalla';
+  padding-left: 50px;
+}
+
+footer {
+  font-family: 'Lobster', 'cursive';
+  font-size: 20px;
+  background: silver;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 1.6;
+}
