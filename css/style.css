@@ -81,6 +81,11 @@ section:nth-child(2) section {
   background-color: silver;
 }
 
+.veiwChart {
+  margin-top: 10px;
+  background-color: silver;
+}
+
 #showResult {
   margin-top: 20px;
 }
