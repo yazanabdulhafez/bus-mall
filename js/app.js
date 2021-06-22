@@ -38,6 +38,7 @@ let centerImage = document.getElementById('centerImage');
 let rightImage = document.getElementById('rightImage');
 const asideElement = document.getElementById('showResult');
 let btnResult = document.getElementById('btnResult');
+let removData = document.getElementById('removData');
 let ulList = document.getElementById('unorderedList');
 asideElement.appendChild(ulList);
 
@@ -54,6 +55,7 @@ function Images(name, src) {
   this.views = 0;
   this.clicks = 0;
   Images.all.push(this);
+
 }
 
 Images.all = []; //the array that contain all the objects
@@ -76,7 +78,7 @@ function render() {
     Images.previousIndex.push(centerItemIndex);
     Images.previousIndex.push(rightItemIndex);
   }
-  console.log(Images.previousIndex);
+  // console.log(Images.previousIndex);
 
 
   let leftIndex = randomNumber(0, imgArray.length - 1);
@@ -109,7 +111,7 @@ function render() {
 
 function eventHandler(event) {
 
-  console.log(event.target.src);
+  //console.log(event.target.src);
   if ((event.target.id === 'rightImage' || event.target.id === 'leftImage' || event.target.id === 'centerImage') && counter < attmpets) {
     if (event.target.id === 'leftImage') {
       Images.all[leftItemIndex].clicks++;
@@ -121,38 +123,49 @@ function eventHandler(event) {
       Images.all[rightItemIndex].clicks++;
 
     }
+
     counter++;
+
     render();
 
+    //console.log(JSON.stringify(Images.all));
 
 
   } else if (counter >= attmpets) {
     imageSection.removeEventListener('click', eventHandler);
-
     resultChart();
+    btnResult.style.visibility = 'visible';
+    removData.style.visibility = 'visible';
+    storeData();
 
   }
-
 }
+
 
 /////////////// render for the unorderd list elements /////////////////
 
 function resultClick(e) {
-  e.preventDefault();
   console.log(e);
+
   for (let i = 0; i < Images.all.length; i++) {
+
     let liElement = document.createElement('li');
     ulList.appendChild(liElement);
     liElement.textContent = `${Images.all[i].name} had ${Images.all[i].clicks} votes, and was seen ${Images.all[i].views} times.`;
-
   }
 
   btnResult.removeEventListener('click', resultClick);
 }
 imageSection.addEventListener('click', eventHandler);
 btnResult.addEventListener('click', resultClick);
+btnResult.style.visibility = 'hidden';
+removData.addEventListener('click', removLocStore);
+removData.style.visibility = 'hidden';
 render();
-
+///////////remove data stored ////////////
+function removLocStore() {
+  localStorage.removeItem('unorderedList');
+}
 ////////////// Random function generate the Index of each image ///////////////////
 function randomNumber(min, max) {
   min = Math.ceil(min);
@@ -218,6 +231,27 @@ function resultChart() {
       }
     }
   });
+}
+/////////////// local storage function ///////////////
+
+function getData() {
+  let itemInfo = JSON.parse(localStorage.getItem('unorderedList'));
+  console.log(itemInfo);
+  if (itemInfo) {
+    Images.all = itemInfo;
+    render();
+
+  }
+
+}
+getData();
+render();
+
+/////////////////// store data in local storage ///////////////
+
+function storeData() {
+  localStorage.setItem('unorderedList', JSON.stringify(Images.all));
+  console.log(JSON.stringify(Images.all));
 }
 
 
