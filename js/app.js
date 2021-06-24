@@ -44,7 +44,7 @@ asideElement.appendChild(ulList);
 
 let counter = 0;
 let attmpets = 25;
-//attmpets = prompt('how many sets of our products you want to see ande choose frome them? hint the defualt value is 25 sets');
+
 
 
 ////////////// Constructor function /////////////////////////////
@@ -125,7 +125,7 @@ function eventHandler(event) {
     }
 
     counter++;
-
+    storeData();
     render();
 
     //console.log(JSON.stringify(Images.all));
@@ -136,7 +136,7 @@ function eventHandler(event) {
     resultChart();
     btnResult.style.visibility = 'visible';
     removData.style.visibility = 'visible';
-    storeData();
+
 
   }
 }
